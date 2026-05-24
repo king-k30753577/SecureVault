@@ -1,0 +1,8 @@
+vault.db
+keys/
+data/files/
+data/streams/
+data/temp/
+__pycache__/
+*.log
+*.db-journal

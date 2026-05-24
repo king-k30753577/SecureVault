@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecureVault</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>SecureVault</h1>
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+<input type="file" name="files" multiple>
+<button type="submit">Secure Upload</button>
+</form>
+
+<div class="grid">
+
+{% for file in files %}
+
+<div class="card">
+
+<div class="file-name">{{ file[1] }}</div>
+
+<div class="buttons">
+
+<a class="open-btn" href="/open/{{ file[1] }}" target="_blank">
+Open File
+</a>
+
+<button class="dustbin-btn" onclick="openDeletePopup({{ file[0] }}, '{{ file[1] }}')">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+<div class="popup-overlay" id="popupOverlay">
+
+<div class="popup-box">
+
+<h2>Delete File</h2>
+
+<p id="popupText">
+Are you sure?
+</p>
+
+<div class="popup-buttons">
+
+<button class="cancel-btn" onclick="closeDeletePopup()">
+No
+</button>
+
+<button class="confirm-delete-btn" id="confirmDeleteBtn">
+Yes
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
